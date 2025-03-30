@@ -1,0 +1,55 @@
+name: Dev Build
+
+concurrency:
+  group: "build"
+  cancel-in-progress: false
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - run: chmod +x gradlew
+
+      - name: Set up Node JS
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+
+      - name: Build
+        run: ./gradlew build -Pdevbuild=${{ github.run_number }}
+
+      - name: Webhook Failure
+        if: ${{ failure() }}
+        run: |
+          cd .github/devbuild
+          npm start ${{ github.ref_name }} ${{ github.repository }} ${{ github.event.before }}...${{ github.event.after }} false
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+      - name: Publish
+        run: ./gradlew publish -Pdevbuild=${{ github.run_number }}
+        env:
+          MAVEN_ALIAS: ${{ secrets.MAVEN_ALIAS }}
+          MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
+
+      - name: Upload file & Discord webhook
+        run: |
+          cd .github/devbuild
+          npm start ${{ github.ref_name }} ${{ github.repository }} ${{ github.event.before }}...${{ github.event.after }} true
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
