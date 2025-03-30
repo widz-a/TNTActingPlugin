@@ -1,7 +1,10 @@
 name: "${name}"
 version: "${version}"
-main: "${group}.${name}Plugin"
+main: "${group}.${name}Main"
 description: "${description}"
 api-version: '${api}'
-author: Withicality
-website: "https://withicality.xyz"
+author: Wida
+
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:2.0.0
+  - org.jetbrains.kotlin:kotlin-reflect:2.0.0

@@ -3,11 +3,11 @@ plugins {
     `java-library`
     `maven-publish`
 
-    kotlin("jvm").version("1.8.0")
-    id("com.github.johnrengelman.shadow").version("7.1.0")
+    kotlin("jvm").version("2.1.20")
+    id("com.gradleup.shadow").version("8.3.6")
 
-    id("io.papermc.paperweight.userdev").version("1.5.5")
-    id("xyz.jpenilla.run-paper") version("2.2.0") // Adds runServer and runMojangMappedServer tasks for testing
+    id("io.papermc.paperweight.userdev").version("2.0.0-beta.16")
+    id("xyz.jpenilla.run-paper") version("2.3.1") // Adds runServer and runMojangMappedServer tasks for testing
 }
 
 group = "${properties["maven_group"]!!}.${name.toLowerCase()}"
@@ -22,25 +22,23 @@ repositories {
     maven ("https://jitpack.io")
     maven ("https://bitbucket.org/kangarko/libraries/raw/master")
     maven ("https://repo.aikar.co/content/groups/aikar/")
-    maven ("https://repo.mikigal.pl/releases")
+    //maven ("https://repo.mikigal.pl/releases")
     maven ("https://hub.spigotmc.org/nexus/content/groups/public/")
 }
 
 dependencies {
     testImplementation(kotlin("test"))
 
-    val paperVer = "1.20.1"
+    val paperVer = "1.21.4"
     compileOnlyApi("io.papermc.paper:paper-api:$paperVer-R0.1-SNAPSHOT")
     paperweight.paperDevBundle("$paperVer-R0.1-SNAPSHOT")
 
-    implementation("io.papermc:paperlib:1.0.7")
-
-    implementation("com.github.kangarko:foundation:6.4.6") { isTransitive = false }
+    implementation("com.github.kangarko:foundation:6.9.18") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
-    implementation("pl.mikigal:ConfigAPI:1.2.4")
+    //implementation("pl.mikigal:ConfigAPI:1.2.4")
 }
 
-val targetJavaVersion = 17
+val targetJavaVersion = 21
 kotlin {
     jvmToolchain(targetJavaVersion)
 }
@@ -112,32 +110,6 @@ tasks {
 
     assemble {
         dependsOn(reobfJar) //bundle
-    }
-
-    publishing {
-        repositories {
-            maven {
-                name = "withicality-maven"
-                val mavenUrl = "https://repo.withicality.xyz"
-                url = uri(if (project.hasProperty("devbuild")) "${mavenUrl}/snapshots" else "${mavenUrl}/releases")
-
-                credentials {
-                    username = System.getenv("MAVEN_ALIAS")
-                    password = System.getenv("MAVEN_TOKEN")
-                }
-
-                authentication.register("basic", BasicAuthentication::class)
-            }
-        }
-
-        publications {
-            create<MavenPublication>("mavenJar") {
-                artifactId = project.name.toLowerCase()
-                version = project.version.toString()
-                group = project.group
-                artifact(reobfJar)
-            }
-        }
     }
 
     register("release") {
