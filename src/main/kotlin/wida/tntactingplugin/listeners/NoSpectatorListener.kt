@@ -11,7 +11,7 @@ class NoSpectatorListener : TNTActingPluginMain.PluginListener() {
     fun gamemodeSwitch(event: PlayerCommandPreprocessEvent) {
         val message = event.message
         if (event.player.hasPermission("tnt.iamallowedtodospectatorbecauseiamcoolaf")) return
-        if (message.startsWith("gamemode spectator") || message.startsWith("gmsp")) {
+        if (message.startsWith("/gamemode spectator") || message.startsWith("/gmsp")) {
             event.isCancelled = true
             event.player.sendMessage(Component.text("Denied.").color(NamedTextColor.RED))
         }
