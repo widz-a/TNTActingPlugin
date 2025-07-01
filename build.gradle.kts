@@ -17,7 +17,7 @@ val api = properties["pluginApi"]!!
 
 repositories {
     mavenCentral()
-    maven ("https://repo.withicality.xyz")
+    //maven ("https://repo.withicality.xyz")
     maven ("https://repo.papermc.io/repository/maven-public/")
     maven ("https://jitpack.io")
     maven ("https://bitbucket.org/kangarko/libraries/raw/master")
@@ -35,6 +35,7 @@ dependencies {
 
     implementation("com.github.kangarko:foundation:6.9.18") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
+    compileOnly("net.luckperms:api:5.4")
     //implementation("pl.mikigal:ConfigAPI:1.2.4")
 }
 

@@ -2,6 +2,9 @@ package wida.tntactingplugin
 
 import co.aikar.commands.BaseCommand
 import co.aikar.commands.PaperCommandManager
+import net.luckperms.api.LuckPermsProvider
+import org.bukkit.Bukkit
+import org.bukkit.OfflinePlayer
 import org.bukkit.event.Listener
 import org.mineacademy.fo.ReflectionUtil
 import org.mineacademy.fo.plugin.SimplePlugin
@@ -13,8 +16,18 @@ class TNTActingPluginMain : SimplePlugin() {
         registerAllEvents(PluginListener::class.java)
 
         val cmdManager = PaperCommandManager(this)
-        registerACFCommands(cmdManager)
+        cmdManager.commandContexts.registerContext(OfflinePlayer::class.java) { c ->
+            return@registerContext Bukkit.getOfflinePlayer(c.popFirstArg())
+        }
 
+        cmdManager.commandCompletions.registerAsyncCompletion("offlineplayers") { c ->
+            Bukkit.getOnlinePlayers().mapNotNull { it.name }
+        }
+
+        cmdManager.commandCompletions.registerAsyncCompletion("lpgroups") { c ->
+            LuckPermsProvider.get().groupManager.loadedGroups.mapNotNull { it.name }
+        }
+        registerACFCommands(cmdManager)
     }
 
     abstract class PluginCommand : BaseCommand()
