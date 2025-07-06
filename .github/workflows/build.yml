@@ -6,25 +6,43 @@
 name: build
 on: [pull_request, push]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
+
       - name: validate gradle wrapper
         uses: gradle/actions/wrapper-validation@v4
+
       - name: setup jdk
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'microsoft'
+
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
+
       - name: build
         run: ./gradlew build
+
       - name: capture build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Artifacts
           path: build/libs/
+      - name: create GitHub pre-release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: prerelease-${{ github.run_number }}
+          name: "Pre-release build #${{ github.run_number }}"
+          body: "Automated pre-release for commit `${{ github.sha }}`"
+          prerelease: true
+          files: build/libs/**
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
