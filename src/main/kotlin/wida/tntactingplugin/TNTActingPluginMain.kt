@@ -41,6 +41,7 @@ class TNTActingPluginMain : SimplePlugin() {
         registerAllEvents(PluginListener::class.java)
 
         val cmdManager = PaperCommandManager(this)
+        cmdManager.enableUnstableAPI("help")
         cmdManager.commandContexts.registerContext(OfflinePlayer::class.java) { c ->
             return@registerContext Bukkit.getOfflinePlayer(c.popFirstArg())
         }
