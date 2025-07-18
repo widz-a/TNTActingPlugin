@@ -8,9 +8,14 @@ import org.bukkit.OfflinePlayer
 import org.bukkit.event.Listener
 import org.mineacademy.fo.ReflectionUtil
 import org.mineacademy.fo.plugin.SimplePlugin
+import wida.tntactingplugin.manager.StaffManager
 
 
 class TNTActingPluginMain : SimplePlugin() {
+
+    object Managers {
+        val staffManager = StaffManager()
+    }
 
     override fun onPluginStart() {
         registerAllEvents(PluginListener::class.java)
@@ -25,12 +30,14 @@ class TNTActingPluginMain : SimplePlugin() {
         }
 
         cmdManager.commandCompletions.registerAsyncCompletion("lpgroups") { c ->
-            LuckPermsProvider.get().groupManager.loadedGroups.mapNotNull { it.name }
+            LuckPermsProvider.get().groupManager.loadedGroups.filter { it.name != "default" }.mapNotNull { it.name }
         }
         registerACFCommands(cmdManager)
     }
 
-    abstract class PluginCommand : BaseCommand()
+    abstract class PluginCommand : BaseCommand() {
+        protected val plugin = getInstance() as TNTActingPluginMain
+    }
     open class PluginListener : Listener {
         protected val plugin = getInstance() as TNTActingPluginMain
     }

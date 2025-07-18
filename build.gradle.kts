@@ -22,8 +22,11 @@ repositories {
     maven ("https://jitpack.io")
     maven ("https://bitbucket.org/kangarko/libraries/raw/master")
     maven ("https://repo.aikar.co/content/groups/aikar/")
-    //maven ("https://repo.mikigal.pl/releases")
+    maven ("https://repo.mikigal.pl/releases")
     maven ("https://hub.spigotmc.org/nexus/content/groups/public/")
+    //maven ("https://repo.codemc.io/repository/maven-releases/")
+    //maven ("https://repo.codemc.io/repository/maven-snapshots/")
+    //maven ("https://repo.md-5.net/content/groups/public/")
 }
 
 dependencies {
@@ -36,7 +39,9 @@ dependencies {
     implementation("com.github.kangarko:foundation:6.9.18") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     compileOnly("net.luckperms:api:5.4")
-    //implementation("pl.mikigal:ConfigAPI:1.2.4")
+    //compileOnly("com.github.retrooper:packetevents-spigot:2.8.0")
+    //compileOnly("me.libraryaddict.disguises:libsdisguises:11.0.0")
+    implementation("pl.mikigal:ConfigAPI:1.2.4")
 }
 
 val targetJavaVersion = 21
