@@ -48,7 +48,7 @@ class TabManager(val plugin: TNTActingPluginMain) {
 
         if (prefix.isEmpty()) return
         val tab = "$prefix ${if (suffix.isEmpty()) "" else "<reset>$suffix"}${player.name}"
-        player.sendMessage(tab)
+        //player.sendMessage(tab)
         player.playerListName(MiniMessage.miniMessage().deserialize(tab))
     }
 
