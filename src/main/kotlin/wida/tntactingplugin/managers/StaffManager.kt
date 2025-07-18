@@ -1,4 +1,4 @@
-package wida.tntactingplugin.manager
+package wida.tntactingplugin.managers
 
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor

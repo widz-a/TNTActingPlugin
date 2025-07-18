@@ -4,6 +4,7 @@ main: "${group}.${name}Main"
 description: "${description}"
 api-version: '${api}'
 author: Wida
+softdepend: ["PlaceholderAPI", "LuckPerms"]
 
 libraries:
   - org.jetbrains.kotlin:kotlin-stdlib:2.0.0
