@@ -39,7 +39,7 @@ dependencies {
 
     implementation("com.github.kangarko:foundation:6.9.18") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
-    compileOnly("net.luckperms:api:5.4")
+    compileOnly("net.luckperms:api:5.5")
     compileOnly("me.clip:placeholderapi:2.11.6")
     //compileOnly("com.github.retrooper:packetevents-spigot:2.8.0")
     //compileOnly("me.libraryaddict.disguises:libsdisguises:11.0.0")

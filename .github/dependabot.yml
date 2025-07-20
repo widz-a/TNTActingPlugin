@@ -13,4 +13,4 @@ updates:
       prefix: "deps:"
     target-branch: "main"
     reviewers:
-      - "Withicality"
+      - "widz-a"
