@@ -96,6 +96,7 @@ tasks {
 
     shadowJar {
         fun relocateW(packag: String) { relocate(packag, "${project.group}.shaded.${packag}") }
+        archiveBaseName.set("TNTActingPlugin")
         archiveClassifier.set("")
         project.configurations.implementation.get().isCanBeResolved = true
         configurations = listOf(project.configurations.implementation.get())
@@ -106,9 +107,9 @@ tasks {
         minimize()
     }
 
-    jar {
+    /*jar {
         enabled = false
-    }
+    }*/
 
     reobfJar {
         doLast {

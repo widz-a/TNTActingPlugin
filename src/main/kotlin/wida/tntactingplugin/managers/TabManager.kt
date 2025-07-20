@@ -43,8 +43,8 @@ class TabManager(val plugin: TNTActingPluginMain) {
 
     fun updatePrefix(user: User) {
         val player = Bukkit.getPlayer(user.uniqueId) ?: return
-        val prefix = ComponentUtils.cmiToMiniMessage(PlaceholderAPI.setPlaceholders(player, "%luckperms_prefix%"))
-        val suffix = ComponentUtils.cmiToMiniMessage(PlaceholderAPI.setPlaceholders(player, "%luckperms_suffix%"))
+        val prefix = ComponentUtils.mojangToMiniMessage(PlaceholderAPI.setPlaceholders(player, "%luckperms_prefix%"))
+        val suffix = ComponentUtils.mojangToMiniMessage(PlaceholderAPI.setPlaceholders(player, "%luckperms_suffix%"))
 
         if (prefix.isEmpty()) return
         val tab = "$prefix ${if (suffix.isEmpty()) "" else "<reset>$suffix"}${player.name}"
