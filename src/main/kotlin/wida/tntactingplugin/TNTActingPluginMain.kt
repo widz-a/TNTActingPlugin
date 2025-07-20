@@ -47,7 +47,7 @@ class TNTActingPluginMain : SimplePlugin() {
         }
 
         cmdManager.commandCompletions.registerAsyncCompletion("offlineplayers") { c ->
-            Bukkit.getOnlinePlayers().mapNotNull { it.name }
+            Bukkit.getOfflinePlayers().mapNotNull { it.name }
         }
 
         cmdManager.commandCompletions.registerAsyncCompletion("lpgroups") { c ->
