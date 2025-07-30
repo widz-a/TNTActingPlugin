@@ -18,16 +18,15 @@ val api = properties["pluginApi"]!!
 repositories {
     mavenCentral()
     //maven ("https://repo.withicality.xyz")
-    maven ("https://repo.papermc.io/repository/maven-public/")
-    maven ("https://jitpack.io")
-    maven ("https://bitbucket.org/kangarko/libraries/raw/master")
-    maven ("https://repo.aikar.co/content/groups/aikar/")
-    maven ("https://repo.mikigal.pl/releases")
-    maven ("https://hub.spigotmc.org/nexus/content/groups/public/")
+    maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.codemc.org/repository/maven-public/")
+    maven("https://repo.inventivetalent.org/repository/public/")
+    maven("https://bitbucket.org/kangarko/libraries/raw/master")
+    maven("https://repo.aikar.co/content/groups/aikar/")
+    maven("https://jitpack.io")
+    maven("https://hub.spigotmc.org/nexus/content/groups/public/")
     maven("https://repo.extendedclip.com/releases/")
-    //maven ("https://repo.codemc.io/repository/maven-releases/")
-    //maven ("https://repo.codemc.io/repository/maven-snapshots/")
-    //maven ("https://repo.md-5.net/content/groups/public/")
+    maven("https://repo.mikigal.pl/releases")
 }
 
 dependencies {
@@ -36,14 +35,13 @@ dependencies {
     val paperVer = "1.21.4"
     compileOnlyApi("io.papermc.paper:paper-api:$paperVer-R0.1-SNAPSHOT")
     paperweight.paperDevBundle("$paperVer-R0.1-SNAPSHOT")
-
     implementation("com.github.kangarko:foundation:6.9.18") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     compileOnly("net.luckperms:api:5.5")
     compileOnly("me.clip:placeholderapi:2.11.6")
-    //compileOnly("com.github.retrooper:packetevents-spigot:2.8.0")
-    //compileOnly("me.libraryaddict.disguises:libsdisguises:11.0.0")
     implementation("pl.mikigal:ConfigAPI:1.2.4")
+    implementation("org.mineskin:java-client:3.0.6-SNAPSHOT")
+    implementation("org.mineskin:java-client-jsoup:3.0.6-SNAPSHOT")
 }
 
 val targetJavaVersion = 21

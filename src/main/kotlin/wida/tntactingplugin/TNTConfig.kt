@@ -16,4 +16,8 @@ interface TNTConfig : Config {
     fun getTabFooter(): String {
         return ComponentUtils.mojangToMiniMessage("&cOnline: &6%server_online%&7/&680")
     }
+
+    fun getMineSkinAPIKey(): String {
+        return ""
+    }
 }

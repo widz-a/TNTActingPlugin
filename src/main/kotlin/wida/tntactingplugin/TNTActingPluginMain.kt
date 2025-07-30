@@ -14,7 +14,6 @@ import pl.mikigal.config.style.NameStyle
 import wida.tntactingplugin.managers.StaffManager
 import wida.tntactingplugin.managers.TabManager
 
-
 class TNTActingPluginMain : SimplePlugin() {
 
     private var config: TNTConfig? = null
