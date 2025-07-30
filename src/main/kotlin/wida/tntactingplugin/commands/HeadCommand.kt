@@ -31,11 +31,11 @@ class HeadCommand : TNTActingPluginMain.PluginCommand() {
         .apiKey(plugin.getTNTConfig().getMineSkinAPIKey())
         .build()
 
-    @CommandAlias("head")
-    @CommandPermission("tnt.commands.head")
+    @CommandAlias("skull")
+    @CommandPermission("tnt.commands.skull")
     @CommandCompletion("@offlineplayers")
     @Syntax("[<source: Name|URL>] [<amount: Number>] [<targetPlayer: Player>]")
-    @Description("Get a player's head")
+    @Description("Get a player's skull")
     fun head(player: Player, @Optional _source: String?, @Default("1") amount: Int, @Optional onlinePlayer: OnlinePlayer?) {
         if (amount !in 1..64) throw InvalidCommandArgument("amount must be between 1 to 64")
         val source = _source ?: player.name
@@ -83,7 +83,7 @@ class HeadCommand : TNTActingPluginMain.PluginCommand() {
                 }
                 target.inventory.addItem(head)
 
-                player.sendMessage(MiniMessage.miniMessage().deserialize("<yellow>Gave <gold>${target.name} <yellow>the head."))
+                player.sendMessage(MiniMessage.miniMessage().deserialize("<yellow>Gave <gold>${target.name} <yellow>the skull."))
             }
             .exceptionally { throwable ->
                 throwable.printStackTrace()
