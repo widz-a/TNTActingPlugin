@@ -35,7 +35,7 @@ dependencies {
     val paperVer = "1.21.4"
     compileOnlyApi("io.papermc.paper:paper-api:$paperVer-R0.1-SNAPSHOT")
     paperweight.paperDevBundle("$paperVer-R0.1-SNAPSHOT")
-    implementation("com.github.kangarko:foundation:6.9.18") { isTransitive = false }
+    implementation("com.github.kangarko:foundation:6.9.22") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     compileOnly("net.luckperms:api:5.5")
     compileOnly("me.clip:placeholderapi:2.11.6")
