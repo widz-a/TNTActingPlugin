@@ -40,8 +40,8 @@ dependencies {
     compileOnly("net.luckperms:api:5.5")
     compileOnly("me.clip:placeholderapi:2.11.6")
     implementation("pl.mikigal:ConfigAPI:1.2.4")
-    implementation("org.mineskin:java-client:3.0.6-SNAPSHOT")
-    implementation("org.mineskin:java-client-jsoup:3.0.6-SNAPSHOT")
+    implementation("org.mineskin:java-client:3.1.0-SNAPSHOT")
+    implementation("org.mineskin:java-client-jsoup:3.1.0-SNAPSHOT")
 }
 
 val targetJavaVersion = 21
