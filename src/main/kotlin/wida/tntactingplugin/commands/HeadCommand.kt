@@ -46,16 +46,6 @@ class HeadCommand : TNTActingPluginMain.PluginCommand() {
         } catch (_: Exception) {
             false
         }
-        /*if (!isURI) {
-            val head = ItemStack(Material.PLAYER_HEAD, amount)
-
-            head.editMeta(SkullMeta::class.java) {
-                it.owningPlayer = Bukkit.getOfflinePlayer(source)
-            }
-            target.inventory.addItem(head)
-            player.sendMessage(MiniMessage.miniMessage().deserialize("<yellow>Gave <gold>${target.name} ${source}<yellow>'s head."))
-            return
-        }*/
         player.sendMessage(MiniMessage.miniMessage().deserialize("<yellow>Getting the skin using <gold>mineskin.org<yellow>."))
 
         val request = GenerateRequest.url(if (isURI) source else "https://wida.dev/skin/$source")

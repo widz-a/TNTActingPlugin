@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm").version("2.1.20")
     id("com.gradleup.shadow").version("8.3.6")
 
-    id("io.papermc.paperweight.userdev").version("2.0.0-beta.16")
+    id("io.papermc.paperweight.userdev").version("2.0.0-beta.18")
     id("xyz.jpenilla.run-paper") version("2.3.1") // Adds runServer and runMojangMappedServer tasks for testing
 }
 
@@ -32,7 +32,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
-    val paperVer = "1.21.4"
+    val paperVer = "1.21.8"
     compileOnlyApi("io.papermc.paper:paper-api:$paperVer-R0.1-SNAPSHOT")
     paperweight.paperDevBundle("$paperVer-R0.1-SNAPSHOT")
     implementation("com.github.kangarko:foundation:6.9.22") { isTransitive = false }
