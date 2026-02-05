@@ -38,7 +38,7 @@ dependencies {
     implementation("com.github.kangarko:foundation:6.9.22") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     compileOnly("net.luckperms:api:5.5")
-    compileOnly("me.clip:placeholderapi:2.11.6")
+    compileOnly("me.clip:placeholderapi:2.11.7")
     implementation("pl.mikigal:ConfigAPI:1.2.6")
     implementation("org.mineskin:java-client:3.2.1-SNAPSHOT")
     implementation("org.mineskin:java-client-jsoup:3.2.1-SNAPSHOT")
