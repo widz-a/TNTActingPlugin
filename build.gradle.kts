@@ -67,7 +67,7 @@ tasks {
         compilerOptions {
             jvmTarget.set(JvmTarget.fromTarget(javaVersion.toString()))
             javaParameters = true
-            freeCompilerArgs = listOf("-Xjvm-default=all")
+            freeCompilerArgs.add("-jvm-default=enable")
         }
     }
 
@@ -91,14 +91,13 @@ tasks {
     }
 
     shadowJar {
-        fun relocateW(packag: String) { relocate(packag, "${project.group}.shaded.${packag}") }
+        //fun relocateW(packag: String) { relocate(packag, "${project.group}.shaded.${packag}") }
         archiveBaseName.set("TNTActingPlugin")
         archiveClassifier.set("")
-        project.configurations.implementation.get().isCanBeResolved = true
-        configurations = listOf(project.configurations.implementation.get())
+        configurations = listOf(project.configurations.runtimeClasspath.get())
         //dependsOn(autoRelocate)
 
-        relocateW("fr.mrmicky.fastboard")
+        //relocateW("fr.mrmicky.fastboard")
 
         minimize()
     }
