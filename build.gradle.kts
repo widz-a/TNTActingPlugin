@@ -1,40 +1,38 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     java
     `java-library`
     `maven-publish`
 
-    kotlin("jvm").version("2.1.20")
-    id("com.gradleup.shadow").version("8.3.6")
+    kotlin("jvm").version("2.3.20")
+    id("com.gradleup.shadow").version("9.4.1")
 
-    id("io.papermc.paperweight.userdev").version("2.0.0-beta.18")
-    id("xyz.jpenilla.run-paper") version("2.3.1") // Adds runServer and runMojangMappedServer tasks for testing
+    //id("io.papermc.paperweight.userdev").version("2.0.0-beta.18")
+    id("xyz.jpenilla.run-paper") version("3.0.2") // Adds runServer and runMojangMappedServer tasks for testing
 }
 
-group = "${properties["maven_group"]!!}.${name.toLowerCase()}"
+group = "${properties["maven_group"]!!}.${name.lowercase()}"
 version = "${properties["project_version"]}${if (project.hasProperty("devbuild")) ("-" + project.findProperty("devbuild")) else ""}"
 description = "${properties["description"]!!}"
 val api = properties["pluginApi"]!!
 
 repositories {
-    mavenCentral()
-    //maven ("https://repo.withicality.xyz")
-    maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://repo.codemc.org/repository/maven-public/")
-    maven("https://repo.inventivetalent.org/repository/public/")
-    maven("https://bitbucket.org/kangarko/libraries/raw/master")
-    maven("https://repo.aikar.co/content/groups/aikar/")
-    maven("https://jitpack.io")
-    maven("https://hub.spigotmc.org/nexus/content/groups/public/")
-    maven("https://repo.extendedclip.com/releases/")
-    maven("https://repo.mikigal.pl/releases")
+    mavenCentral() //LuckPerms
+    maven("https://repo.papermc.io/repository/maven-public/") //Paper ofc
+    maven("https://jitpack.io") //Foundation
+    maven("https://repo.inventivetalent.org/repository/public/") //MineSkin
+    maven("https://repo.aikar.co/content/groups/aikar/") //ACF
+    maven("https://repo.extendedclip.com/releases/") //PAPI
+    maven("https://repo.mikigal.pl/releases") //ConfigAPI
 }
 
 dependencies {
     testImplementation(kotlin("test"))
 
-    val paperVer = "1.21.8"
-    compileOnlyApi("io.papermc.paper:paper-api:$paperVer-R0.1-SNAPSHOT")
-    paperweight.paperDevBundle("$paperVer-R0.1-SNAPSHOT")
+    compileOnlyApi("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    //paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
     implementation("com.github.kangarko:foundation:6.9.22") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     compileOnly("net.luckperms:api:5.5")
@@ -65,9 +63,9 @@ tasks {
         }
     }
 
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = javaVersion.toString()
+    withType<KotlinCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.fromTarget(javaVersion.toString()))
             javaParameters = true
             freeCompilerArgs = listOf("-Xjvm-default=all")
         }
@@ -109,7 +107,7 @@ tasks {
         enabled = false
     }*/
 
-    reobfJar {
+    /*reobfJar {
         doLast {
             shadowJar.get().archiveFile.get().asFile.delete()
         }
@@ -117,7 +115,7 @@ tasks {
 
     assemble {
         dependsOn(reobfJar) //bundle
-    }
+    }*/
 
     register("release") {
         dependsOn(build)

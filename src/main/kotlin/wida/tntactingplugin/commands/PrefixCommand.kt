@@ -25,7 +25,7 @@ class PrefixCommand : TNTActingPluginMain.PluginCommand() {
         val api = LuckPermsProvider.get()
         val user = api.userManager.loadUser(player.player.uniqueId).join()
 
-        user.getNodes()
+        user.nodes
             .filter { it.key.startsWith("prefix.143.") }
             .forEach { user.data().remove(it) }
 
