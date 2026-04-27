@@ -33,7 +33,7 @@ dependencies {
 
     compileOnlyApi("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
     //paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
-    implementation("com.github.kangarko:foundation:6.9.22") { isTransitive = false }
+    implementation("com.github.kangarko:foundation:6.10.0") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     compileOnly("net.luckperms:api:5.5")
     compileOnly("me.clip:placeholderapi:2.12.2")
