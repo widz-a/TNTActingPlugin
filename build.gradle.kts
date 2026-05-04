@@ -31,7 +31,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
-    compileOnlyApi("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    compileOnlyApi("io.papermc.paper:paper-api:26.1.2.build.60-stable")
     //paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
     implementation("com.github.kangarko:foundation:6.9.22") { isTransitive = false }
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
